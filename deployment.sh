@@ -8,7 +8,7 @@ FABFILE=/var/lib/jenkins/scripts/aegir_cid/fabfile.py
 
 HOST=$1
 SITE=$2
-PROFILE=$SITE_$3
+PROFILE=$3
 WEBSERVER=$4
 DBSERVER=$5
 MAKEFILE=$6
@@ -42,5 +42,5 @@ fi
 # Loop over each 'task' and call it as a function via the fabfile, 
 # with some extra arguments which are sent to this shell script by Jenkins
 for task in ${TASKS[@]}; do
-  fab -f $FABFILE -H $HOST $task:site=$SITE,profile=$PROFILE,webserver=$WEBSERVER,dbserver=$DBSERVER,makefile=$MAKEFILE,build=$DATE || exit 1
+  fab -f $FABFILE -H $HOST $task:site=$SITE,profile=$PROFILE,webserver=$WEBSERVER,dbserver=$DBSERVER,makefile=$MAKEFILE,build=$PROFILE$DATE || exit 1
 done
