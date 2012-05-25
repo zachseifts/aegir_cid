@@ -14,6 +14,7 @@ DBSERVER=$5
 MAKEFILE=$6
 BUILD_NUMBER=$7
 DATE=`date +%Y%m%d%H%M%S`
+BUILD=$PROFILE$DATE$BUILD_NUMBER
 
 if [[ -z $HOST ]] || [[ -z $SITE ]] || [[ -z $PROFILE ]] || [[ -z $WEBSERVER ]] || [[ -z $DBSERVER ]] || [[ -z $MAKEFILE ]] || [[ -z $BUILD_NUMBER ]]
 then
@@ -42,5 +43,5 @@ fi
 # Loop over each 'task' and call it as a function via the fabfile, 
 # with some extra arguments which are sent to this shell script by Jenkins
 for task in ${TASKS[@]}; do
-  fab -f $FABFILE -H $HOST $task:site=$SITE,profile=$PROFILE,webserver=$WEBSERVER,dbserver=$DBSERVER,makefile=$MAKEFILE,build=$SITE$BUILD_NUMBER || exit 1
+  fab -f $FABFILE -H $HOST $task:site=$SITE,profile=$PROFILE,webserver=$WEBSERVER,dbserver=$DBSERVER,makefile=$MAKEFILE,build=$BUILD || exit 1
 done
