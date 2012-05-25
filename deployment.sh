@@ -42,5 +42,5 @@ fi
 # Loop over each 'task' and call it as a function via the fabfile, 
 # with some extra arguments which are sent to this shell script by Jenkins
 for task in ${TASKS[@]}; do
-  fab -f $FABFILE -H $HOST $task:site=$SITE,profile=$PROFILE,webserver=$WEBSERVER,dbserver=$DBSERVER,makefile=$MAKEFILE,build=$PROFILE$DATE || exit 1
+  fab -f $FABFILE -H $HOST $task:site=$SITE,profile=$PROFILE,webserver=$WEBSERVER,dbserver=$DBSERVER,makefile=$MAKEFILE,build=$PROFILE$BUILD_NUMBER || exit 1
 done
