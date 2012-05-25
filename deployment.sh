@@ -8,7 +8,7 @@ FABFILE=/var/lib/jenkins/scripts/aegir_cid/fabfile.py
 
 HOST=$1
 SITE=$2
-PROFILE=$3
+PROFILE=$SITE_$3
 WEBSERVER=$4
 DBSERVER=$5
 MAKEFILE=$6
